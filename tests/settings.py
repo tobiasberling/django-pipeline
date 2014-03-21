@@ -8,6 +8,8 @@ DATABASES = {
     }
 }
 
+DEBUG = False
+
 SITE_ID = 1
 
 INSTALLED_APPS = [
@@ -18,7 +20,6 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.admin',
     'pipeline',
-    'tests',
     'tests.tests'
 ]
 
@@ -33,11 +34,11 @@ STATIC_ROOT = local_path('static/')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     ('pipeline', local_path('assets/')),
-    local_path('assets2/'),
 )
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder'
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
 )
 
 SECRET_KEY = "django-pipeline"
