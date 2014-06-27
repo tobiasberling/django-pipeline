@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 from django.test import TestCase
-from django.conf import settings
 from django.core.urlresolvers import reverse
 
 from tests.utils import pipeline_settings

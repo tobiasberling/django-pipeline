@@ -160,7 +160,7 @@ class Compressor(object):
             return False
         if not (re.search(settings.PIPELINE_EMBED_PATH, path.replace('\\', '/')) and self.storage.exists(path)):
             return False
-        if not ext in EMBED_EXTS:
+        if ext not in EMBED_EXTS:
             return False
         if not (font or len(self.encoded_content(path)) < settings.PIPELINE_EMBED_MAX_IMAGE_SIZE):
             return False
