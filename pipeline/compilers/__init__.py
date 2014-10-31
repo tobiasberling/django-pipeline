@@ -36,9 +36,10 @@ class Compiler(object):
                     infile = self.storage.path(input_path)
                     outfile = self.output_path(infile, compiler.output_extension)
                     outdated = compiler.is_outdated(input_path, output_path)
+                    cwd = os.path.dirname(infile)
                     try:
                         compiler.compile_file(quote(infile), quote(outfile),
-                            outdated=outdated, force=force)
+                                              outdated=outdated, force=force, cwd=cwd)
                     except CompilerError:
                         if not self.storage.exists(output_path) or settings.DEBUG:
                             raise
@@ -90,6 +91,7 @@ class CompilerBase(object):
 class SubProcessCompiler(CompilerBase):
     def execute_command(self, command, content=None, cwd=None):
         import subprocess
+
         pipe = subprocess.Popen(command, shell=True, cwd=cwd,
                                 stdout=subprocess.PIPE, stdin=subprocess.PIPE,
                                 stderr=subprocess.PIPE)
