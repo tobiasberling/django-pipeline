@@ -10,7 +10,7 @@ class LiveScriptCompiler(SubProcessCompiler):
     def match_file(self, path):
         return path.endswith('.ls')
 
-    def compile_file(self, infile, outfile, outdated=False, force=False):
+    def compile_file(self, infile, outfile, outdated=False, force=False, cwd=None):
         if not outdated and not force:
             return  # File doesn't need to be recompiled
         command = "%s -cp %s %s > %s" % (
